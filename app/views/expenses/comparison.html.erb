@@ -1,0 +1,55 @@
+<h4>月選択</h4>
+<% for month_str in @budget_month_ary %>
+<a href=/comparison/new/<%= month_str.strftime('%Y%m') %>><%= month_str.strftime('%Y年%-m月') %></a>
+<% end %>
+<br>
+<% if @expense_ary.inject(:+)  == 0 then %>
+    <h3><%= month_str.strftime('%Y年%-m月') %>にデータが存在していません。</h3>
+<% else %>
+
+    <canvas id="mixedChart" width="900" height="400"></canvas>
+    <script>
+    var ctx = document.getElementById("mixedChart").getContext('2d');
+    var mixedChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: '使用金額',
+                data: <%= @expense_ary %>,
+                backgroundColor: <%= @expense_labels_color.to_json.html_safe %>
+            },
+            {
+                label: '予算金額',
+                data: <%= @budget_ary %>,
+                backgroundColor: <%= @budget_labels_color.to_json.html_safe %>,
+                borderColor: <%= @expense_labels_color.to_json.html_safe %>,
+                borderWidth: 2
+
+                  // Changes this dataset to become a line
+            }],
+            labels: <%= @labels_data.to_json.html_safe %>
+        },
+        options: {
+            title: {
+                display: true,
+                text: <%= @labels_month.to_json.html_safe %> + " 予実対照表",
+                fontSize: 24
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        // Include a dollar sign in the ticks
+                        callback: function(value, index, values) {
+                            return  value + '円';
+                        }
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+    Copyright (c) 2013 Keith Walsh
+
+<% end %>
+
+

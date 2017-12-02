@@ -1,0 +1,12 @@
+<%= form_for @item do |f| %>
+	<h2>費目</h2>
+	<%= f.text_field :name %>
+	<h2>説明</h2>
+	<%= f.text_field :description %>
+	<h2>分類</h2>
+	<%= f.collection_select(:category_id,@categories_list,:id,:name) %><br>
+	<br>
+	<%= f.submit "送信します" %>
+<% end %>
+
+<%= link_to "一覧へ" ,items_path %>

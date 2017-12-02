@@ -1,0 +1,27 @@
+<h1>登録済み費目一覧</h1>
+<%= link_to image_tag('btn_new.gif', { :border => '0', :alt => '登録'}), new_item_path %>
+<br>
+<table class='master_table'>
+  <thead>
+    <tr>
+      <th>費目名</th>
+      <th>費目説明</th>
+      <th>費目分類</th>
+      <th colspan="2">変更</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr style="background-color:<%= cycle('#FFffFF','#FFFFCC') %>">
+        <td><%= item.name %></td>
+        <td><%= item.description %></td>
+        <td><%= @categories[item.category_id]['name'] %></td>
+        <td><%= link_to image_tag('btn_edit.gif', { :border => '0', :alt => '編集'}), edit_item_path(item) %>
+        <td><%= link_to image_tag('btn_delete.gif', { :border => '0', :alt => '削除'}), item, method: :delete, data: { confirm: '削除してもいいですか?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

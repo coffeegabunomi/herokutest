@@ -1,0 +1,12 @@
+<%= form_for(@expense) do |f| %>
+  <h2>支払日</h2>
+  <%= f.date_field :day %>
+  <h2>費目</h2>
+  <%= f.grouped_collection_select(:item_id, @categories, :items,:name,:id,:name) %>
+  <h2>金額</h2>
+  <%= f.number_field :money,in: 0..1000000, step: 1 %>
+  <br>
+  <br>
+  <%= f.submit "送信します" %>
+<% end %>
+<%= link_to "一覧へ" ,expenses_path %>

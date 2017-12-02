@@ -1,0 +1,15 @@
+<%= form_for @category do |f| %>
+	<h3>分類</h3>
+	<%= f.text_field :name %>
+	<h3>説明</h3>
+	<%= f.text_field :description %>
+	<h3>月毎予算初期金額</h3>
+	<%= f.number_field :defaultmoney,in: 0..1000000, step: 1 %>
+	<h3>表示色</h3>
+	<%= f.color_field :colorcode %>
+
+	<br>
+	<%= f.submit "送信します" %>
+<% end %>
+
+<%= link_to "一覧へ" ,categories_path %>

@@ -1,0 +1,31 @@
+<h1>登録済み分類一覧</h1>
+
+<table class='master_table'>
+  <thead>
+    <tr>
+      <th>分類名</th>
+      <th>分類説明</th>
+      <th>月毎予算初期金額</th>
+      <th>表示色</th>
+
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr style="background-color:<%= cycle('#FFffFF','#FFFFCC') %>">
+        <td><%= category.name %></td>
+        <td><%= category.description %></td>
+        <td><%= number_to_currency(category.defaultmoney, :locale => 'ja') %></td>
+        <td><%= category.colorcode %></td>
+
+        <td><%= link_to image_tag('btn_edit.gif', { :border => '0', :alt => '編集'}), edit_category_path(category) %>
+        <td><%= link_to image_tag('btn_delete.gif', { :border => '0', :alt => '削除'}), category, method: :delete, data: { confirm: '削除してもいいですか?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to image_tag('btn_new.gif', { :border => '0', :alt => '登録'}), new_category_path %>

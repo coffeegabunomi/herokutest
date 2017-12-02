@@ -1,0 +1,34 @@
+<h1>支払い一覧表</h1>
+<!-- 追加箇所開始 -->
+<%= page_entries_info @expenses %>
+<!-- 追加箇所終了 -->
+<table class='calendar_table'>
+  <thead>
+    <tr>
+      <th>支払日</th>
+      <th>金額</th>
+      <th>費目【費目分類】</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr style="background-color:<%= cycle('#FFffFF','#FFFFCC') %>">
+        <td><%= expense.day %></td>
+        <td align="right"><%= number_to_currency(expense.money, :locale => 'ja') %></td>
+        <td><%= expense.item.name %>【<%= expense.item.category.name %>】</td>
+        <td><%= link_to image_tag('btn_edit.gif', { :border => '0', :alt => '編集'}), edit_expense_path(expense) %>
+        <td><%= link_to image_tag('btn_delete.gif', { :border => '0', :alt => '削除'}), expense, method: :delete, data: { confirm: '削除してもいいですか?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to image_tag('btn_new.gif', { :border => '0', :alt => '登録'}), new_expense_path %>
+<br>
+<!-- 追加箇所開始 -->
+<%= paginate @expenses %>
+<!-- 追加箇所終了 -->

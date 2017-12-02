@@ -1,0 +1,12 @@
+<% todaymonth = Time.now %>
+<div id='cssmenu'>
+<ul>
+   <li class='active'><%= link_to '支払い集計(グラフ)', expenses_sum_path %></li>
+   <li><%= link_to 'カレンダー(グラフ)', calendar_index_path %></li>
+   <li><a href=/comparison/new/<%= todaymonth.strftime('%Y%m') %>>予実対照表(グラフ)</a></li>
+   <li><%= link_to '支払い一覧表', expenses_path %></li>
+   <li><%= link_to '費目管理', items_path %></li>
+   <li class='last'><%= link_to '費目分類管理', categories_path %></li>
+
+</ul>
+</div>

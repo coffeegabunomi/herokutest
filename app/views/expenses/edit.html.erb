@@ -1,0 +1,5 @@
+<h1>支払い編集</h1>
+
+<%= render partial: "form" %><br>
+<%= link_to image_tag('btn_delete.gif', { :border => '0', :alt => '削除'}), expense_path(@expense),
+ method: :delete, data: { confirm: '削除してもいいですか?' } %></td>
