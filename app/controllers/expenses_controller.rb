@@ -12,16 +12,31 @@ class ExpensesController < ApplicationController
   end
 
   def sum
-    @chartdata_ary = []
-    Category.find_each do |cate|
-      @scores = {"name" =>"" ,"data" =>""}
-      @item_in = Item.where(category_id:cate.id).pluck(:id)
-      @scores["name"] = cate.name
-      @scores["data"] = Expense.where("item_id IN (?)",@item_in).group("to_char(day ,'YYYY年MM月')").sum(:money)
 
-      @chartdata_ary.push(@scores)
-      @color_ary = Category.pluck(:colorcode)
-    end
+        sql = " select min(expenses.id) as id, "  +
+          " concat(categories.name,' ',TO_CHAR(sum(money),'FM9,999,999'),'円') as title, " + 
+          " concat(day,' 00:00:00') as start, " +
+          " concat(day,' 00:00:00') as end, " +
+          " categories.colorcode as color , " + 
+          " 'black' as textColor , " +
+          " 'false' as allday " + 
+          " from (expenses INNER JOIN items ON items.id = expenses.item_id) " + 
+          " inner join categories on items.category_id = categories.id " + 
+          " group by day,categories.id "
+    
+    @events = ActiveRecord::Base.connection.select_all(sql)
+    Expense.group(:month).pluck(:month)
+
+#    @chartdata_ary = []
+#    Category.find_each do |cate|
+#      @scores = {"name" =>"" ,"data" =>""}
+#      @item_in = Item.where(category_id:cate.id).pluck(:id)
+#      @scores["name"] = cate.name
+#      @scores["data"] = Expense.where("item_id IN (?)",@item_in).group("to_char(day ,'YYYY年MM月')").sum(:money)
+#
+#      @chartdata_ary.push(@scores)
+#      @color_ary = Category.pluck(:colorcode)
+#    end
   end
 
   def comparison
@@ -78,7 +93,10 @@ class ExpensesController < ApplicationController
     end
 
     #予実表の月リンク
-    @budget_month_ary = Budget.group(:month).pluck(:month)
+    @budget_month_ary = Budget.order(:month).group(:month).pluck(:month)
+
+
+    @thismonth = data_month
   end
 
 

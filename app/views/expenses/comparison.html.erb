@@ -4,7 +4,7 @@
 <% end %>
 <br>
 <% if @expense_ary.inject(:+)  == 0 then %>
-    <h3><%= month_str.strftime('%Y年%-m月') %>にデータが存在していません。</h3>
+    <h3><%= @thismonth.to_date.strftime('%Y年%m月') %>にデータが存在していません。</h3>
 <% else %>
 
     <canvas id="mixedChart" width="900" height="400"></canvas>
