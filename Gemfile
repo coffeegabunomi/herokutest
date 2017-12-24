@@ -22,6 +22,9 @@ gem 'seed_dump'
 # ip
 gem 'rack-contrib', require:'rack/contrib'
 
+#カラー変換
+gem 'colorable'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
