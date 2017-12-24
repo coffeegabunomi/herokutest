@@ -20,7 +20,7 @@ gem 'pg', '0.20.0'
 gem 'seed_dump'
 
 # ip
-gem 'rack-contrib', :require => 'rack/contrib'
+gem 'rack-attack'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

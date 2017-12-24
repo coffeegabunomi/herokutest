@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-config.middleware.use "Rack::Access", YAML.load(open(Rails.root + "config/access.yml", &:read))[Rails.env]
+config.middleware.use Rack::Attack
 
 module INOUT
   class Application < Rails::Application
