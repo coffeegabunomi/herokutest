@@ -27,9 +27,9 @@ $(document).ready(function() {
         weekMode: 'liquid',
         header: {
             // title, prev, next, prevYear, nextYear, today
-            left: 'prevYear,nextYear',
+            left: 'prev,today,next',
             center: 'title',
-            right: 'prev,today,next'
+            right: 'prevYear,nextYear'
         },
         // ボタン文字列
         buttonText: {
