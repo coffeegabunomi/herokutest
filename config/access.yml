@@ -1,0 +1,14 @@
+localnet: &localnet
+  /:
+    - 127.0.0.1
+    - 192.168.1.0/24
+
+development:
+  <<: *localnet
+
+test:
+  <<: *localnet
+
+production
+  /:
+    - 59.133.178.14 # 公開対象アドレス

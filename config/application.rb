@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+config.middleware.use "Rack::Access", YAML.load(open(Rails.root + "config/access.yml", &:read))[Rails.env]
+
 module INOUT
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
