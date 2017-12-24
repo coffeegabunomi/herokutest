@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+  root :to => 'calendar#index'
+
+  #get 'root/index'
+
   get 'calendar/index'
   get 'expenses/sum' => 'expenses#sum'
   #get 'expenses/comparison/:month' => 'expenses#comparison'
-
-
 
   resources :events
 
