@@ -12,7 +12,7 @@ class EventsController < ApplicationController
           " concat(day,' 00:00:00') as start, " +
           " concat(day,' 00:00:00') as end, " +
           " categories.colorcode as color , " + 
-          " 'black' as textColor , " +
+          " '#333333' as " + %Q{"textColor"} + " , " +
           " 'false' as allday " + 
           " from (expenses INNER JOIN items ON items.id = expenses.item_id) " + 
           " inner join categories on items.category_id = categories.id " + 
