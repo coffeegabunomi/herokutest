@@ -19,10 +19,10 @@ $(document).ready(function() {
         //},
         //イベントじゃないところをクリックしたとき(日をクリックしたとき)に実行
         
-        // 高さ(px)
-        height: 550,
-        // コンテンツの高さ(px)
-        contentHeight: 500,
+        // 高さ
+        height: 100%,
+        // コンテンツの高さ
+        contentHeight: 90%,
         // 週モード (fixed, liquid, variable)
         weekMode: 'liquid',
         header: {
